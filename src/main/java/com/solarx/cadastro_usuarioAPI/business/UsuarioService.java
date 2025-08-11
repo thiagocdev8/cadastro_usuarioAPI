@@ -46,6 +46,8 @@ public class UsuarioService {
                 .age(usuario.getAge() != 0 ? usuario.getAge() : usuarioEntity.getAge())
                 .id(usuarioEntity.getId())
                 .build();
+
+        usuarioRepository.saveAndFlush(usuarioAtualizado);
     }
 
     public void atualizarUsuarioByEmail(String email, Usuario usuario){
@@ -56,6 +58,8 @@ public class UsuarioService {
                 .age(usuario.getAge() != 0 ? usuario.getAge() : usuarioEntity.getAge())
                 .id(usuarioEntity.getId())
                 .build();
+
+        usuarioRepository.saveAndFlush(usuarioAtualizado);
     }
 
 
