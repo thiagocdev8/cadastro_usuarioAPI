@@ -4,6 +4,7 @@ import com.solarx.cadastro_usuarioAPI.Infraestructure.Entities.Usuario;
 import com.solarx.cadastro_usuarioAPI.Infraestructure.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,10 @@ public class UsuarioService {
 
     public void salvarUsuario(Usuario usuario){
         usuarioRepository.saveAndFlush(usuario);
+    }
+
+    public List<Usuario> listarUsuarios(){
+        return usuarioRepository.findAll();
     }
 
     public Optional<Usuario> buscarUsuarioPorId(Long id){
@@ -43,7 +48,7 @@ public class UsuarioService {
         Usuario usuarioAtualizado = Usuario.builder()
                 .email(usuario.getEmail() != null ? usuario.getEmail() : usuarioEntity.getEmail())
                 .name(usuario.getName() != null ? usuario.getName() : usuarioEntity.getName())
-                .age(usuario.getAge() != 0 ? usuario.getAge() : usuarioEntity.getAge())
+                .age(usuario.getAge() != null ? usuario.getAge() : usuarioEntity.getAge())
                 .id(usuarioEntity.getId())
                 .build();
 

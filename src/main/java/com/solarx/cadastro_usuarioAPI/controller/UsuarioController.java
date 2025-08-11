@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,13 +22,19 @@ public class UsuarioController {
 
 
     //create user
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<String> salvarUsuario(@RequestBody Usuario usuario){
         usuarioService.salvarUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario criado com sucesso");
     }
 
     @GetMapping
+    public List<Usuario> listarUsuarios(){
+        return usuarioService.listarUsuarios();
+    }
+
+    //find by email (ex: /usuario/email?email=thiago@gmail.com)
+    @GetMapping("/email")
     public ResponseEntity<Usuario> buscarUsuarioByEmail(@RequestParam String email){
         Usuario usuario = usuarioService.buscarUsuarioByEmail(email);
         return ResponseEntity.ok(usuario);
@@ -45,13 +52,13 @@ public class UsuarioController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/email")
     public ResponseEntity<Void> deleteUsuarioByEmail(@RequestParam String email){
         usuarioService.deleteByEmail(email);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping("/email")
     public ResponseEntity<Void> atualizarUsuarioByEmail(@RequestParam String email, @RequestBody Usuario usuario){
         usuarioService.atualizarUsuarioByEmail(email, usuario);
         return ResponseEntity.ok().build();

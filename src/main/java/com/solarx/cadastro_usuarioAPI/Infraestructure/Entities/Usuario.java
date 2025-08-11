@@ -24,7 +24,7 @@ public class Usuario {
     @Column(name = "email", unique = true)
     private String email;
 
-    private int age;
+    private Integer age;
 
 
 }
