@@ -7,21 +7,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Data //lombok this gives us all our getters and setters
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Table(name = "usuario")
-@Entity
+@Builder //readable object construction, especially useful when there are many fields or optional values
+@Table(name = "usuario") // the table name the database will create
+@Entity //have to use this so JPA knows its an entity
 public class Usuario {
 
+    // Must have ID and Generated value to the database will automatically generate the ID
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true) // unique so there wont be 2 emails the same...
     private String email;
 
     private Integer age;

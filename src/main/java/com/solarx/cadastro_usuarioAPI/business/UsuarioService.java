@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+//service is where all the business logic is (regra de negocio)
+@Service //have to use @service annotation so spring will know this is my service class
 public class UsuarioService {
 
+    //dependency injection so we get the methods from Jpa, use constructor
     private final UsuarioRepository usuarioRepository;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
