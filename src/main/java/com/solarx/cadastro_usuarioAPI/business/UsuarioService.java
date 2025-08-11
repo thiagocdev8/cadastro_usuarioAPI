@@ -29,6 +29,16 @@ public class UsuarioService {
                 () -> new RuntimeException("Email não encontrado"));
     }
 
+    public void deleteById(Long id){
+        usuarioRepository.deleteById(id);
+    }
+
+    public void deleteByEmail(String email){
+        usuarioRepository.deleteByEmail(email);
+    }
+
+
+
 
 
 
